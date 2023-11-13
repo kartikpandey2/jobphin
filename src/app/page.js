@@ -1,12 +1,9 @@
-import { getAllJobs } from "./jobs/api";
 import JobSection from "./components/jobSection";
 
-export default async function Home() {
-  const jobsData = await getAllJobs();
-
+export default function Home() {
   return (
     <div className="bg-background-gray w-full h-full">
-      <JobSection jobs={jobsData} />
+      <JobSection />
     </div>
   );
 }

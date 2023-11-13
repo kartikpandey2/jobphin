@@ -1,5 +1,5 @@
 "use client";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Image from "next/image";
 import { JobCardContainer, JobDetails, JobCardActions } from "../jobCard";
 import { getAllJobs } from "../../jobs/api";
@@ -10,7 +10,8 @@ import ToastContext from "../toast/context";
 
 export default function JobSection(props) {
   const { toast } = useContext(ToastContext);
-  const [allJobs, updateAllJobs] = useState(props.jobs);
+  const [loading, updateLoading] = useState(true);
+  const [allJobs, updateAllJobs] = useState([]);
 
   const fetchAllJobs = async () => {
     try {
@@ -21,6 +22,18 @@ export default function JobSection(props) {
       console.error(err);
     }
   };
+
+  const fetchJobsInitially = async () => {
+    try {
+      await fetchAllJobs();
+      updateLoading(false);
+    } catch (err) {
+      toast("error", "Something went wrong while fetching jobs");
+    }
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => fetchJobsInitially, []);
 
   const onSuccess = (message) => {
     toast("success", message);
@@ -34,6 +47,7 @@ export default function JobSection(props) {
 
   return (
     <>
+      {loading ? <h1>Loading....</h1> : null}
       <header className="bg-white px-10 py-4">
         <CreateJob onJobPostSuccess={onSuccess} onError={onError} />
       </header>
