@@ -14,7 +14,7 @@ const jobInit = {
   remoteType: "",
   experience: { min: "", max: "" },
   salary: { min: "", max: "" },
-  totalEmployee: null,
+  totalEmployee: "",
   applyType: "",
 };
 

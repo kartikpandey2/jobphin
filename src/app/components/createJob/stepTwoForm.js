@@ -2,7 +2,7 @@
 import Input from "../input";
 import Radio from "../radio";
 import {
-  characterAndNumber,
+  onlyPositiveNumberRange,
   salaryNumber,
   onlyPositiveNumber,
 } from "../../../utils/regex";
@@ -29,6 +29,7 @@ export default function StepTwoForm(props) {
         <div className="flex justify-between">
           <Input
             placeholder="Minimum"
+            type="number"
             value={job.experience.min}
             pattern={onlyPositiveNumber}
             className="w-[48%]"
@@ -39,6 +40,7 @@ export default function StepTwoForm(props) {
           />
           <Input
             placeholder="Maximum"
+            type="number"
             value={job.experience.max}
             pattern={onlyPositiveNumber}
             className="w-[48%]"
@@ -57,6 +59,7 @@ export default function StepTwoForm(props) {
         <div className="flex justify-between">
           <Input
             placeholder="Minimum"
+            type="number"
             value={job.salary.min}
             pattern={salaryNumber}
             className="w-[48%]"
@@ -65,6 +68,7 @@ export default function StepTwoForm(props) {
           />
           <Input
             placeholder="Maximum"
+            type="number"
             value={job.salary.max}
             pattern={salaryNumber}
             className="w-[48%]"
@@ -82,7 +86,7 @@ export default function StepTwoForm(props) {
           <Input
             placeholder="ex. 100"
             value={job.totalEmployee}
-            pattern={characterAndNumber}
+            pattern={onlyPositiveNumberRange}
             onChange={(e) => updateJobField("totalEmployee", e.target.value)}
           />
         </div>

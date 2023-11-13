@@ -1,3 +1,5 @@
+import { numberWithCommas } from "@/utils";
+
 export default function JobDetails(props) {
   const { job, className } = props;
 
@@ -14,11 +16,13 @@ export default function JobDetails(props) {
   let salaryString = "";
 
   if (job.salary.min && job.salary.max) {
-    salaryString = `INR (₹) ${job.salary.min} - ${job.salary.max} / Month`;
+    salaryString = `INR (₹) ${numberWithCommas(
+      job.salary.min
+    )} - ${numberWithCommas(job.salary.max)} / Month`;
   } else if (job.salary.min && !job.salary.max) {
-    salaryString = `INR (₹) ${job.salary.min} / Month`;
+    salaryString = `INR (₹) ${numberWithCommas(job.salary.min)} / Month`;
   } else if (!job.salary.min && job.salary.max) {
-    salaryString = `INR (₹) ${job.salary.max} / Month`;
+    salaryString = `INR (₹) ${numberWithCommas(job.salary.max)} / Month`;
   }
 
   return (
