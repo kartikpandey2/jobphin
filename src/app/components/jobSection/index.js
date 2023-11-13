@@ -32,8 +32,9 @@ export default function JobSection(props) {
     }
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => fetchJobsInitially, []);
+  useEffect(() => {
+    fetchJobsInitially();
+  }, []);
 
   const onSuccess = (message) => {
     toast("success", message);
